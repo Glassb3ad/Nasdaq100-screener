@@ -1,14 +1,5 @@
 const mongoose = require('mongoose')
 
-const password = 'Muuli33'
-mongoose.connect(`mongodb+srv://jhalah:Muuli33@cluster0.ka30p.mongodb.net/Stocks?retryWrites=true&w=majority`)
-  .then(result => {
-    console.log('connected to MongoDB')
-  })
-  .catch((error) => {
-    console.log('error connecting to MongoDB:', error.message)
-  })
-
 const stockSchema = new mongoose.Schema({
 Symbol: String,
 AssetType: String,
