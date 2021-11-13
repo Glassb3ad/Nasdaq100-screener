@@ -9,7 +9,8 @@ mongoose.connect(`mongodb+srv://jhalah:Muuli33@cluster0.ka30p.mongodb.net/Stocks
     console.log('error connecting to MongoDB:', error.message)
   })
 
-const stockSchema = new mongoose.Schema({Symbol: String,
+const stockSchema = new mongoose.Schema({
+Symbol: String,
 AssetType: String,
 Name: String,
 Description: String,
@@ -53,21 +54,8 @@ Beta: String,
 '50DayMovingAverage': String,
 '200DayMovingAverage': String,
 SharesOutstanding: String,
-SharesFloat: String,
-SharesShort: String,
-SharesShortPriorMonth: String,
-ShortRatio: String,
-ShortPercentOutstanding: String,
-ShortPercentFloat: String,
-PercentInsiders: String,
-PercentInstitutions: String,
-ForwardAnnualDividendRate: String,
-ForwardAnnualDividendYield: String,
-PayoutRatio: String,
 DividendDate: String,
 ExDividendDate: String,
-LastSplitFactor: String,
-LastSplitDate: String
 })
 
 module.exports =  mongoose.model("Stock", stockSchema)
