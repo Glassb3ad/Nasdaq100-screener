@@ -4,6 +4,7 @@ const axios = require('axios')
 const Symbol = require('./models/Symbols.js')
 const Stocks = require('./models/Stocks.js')
 const stocksRouter = require('./controllers/stockController')
+const userRouter = require('./controllers/userController')
 
 const app = express()
 
@@ -17,6 +18,7 @@ console.log('error connecting to MongoDB --stocks:', error.message)
 
 app.use(express.json())
 app.use('/api/stocks',stocksRouter)
+app.use('/users',userRouter)
 
 
 //Koodi hakee osakkeiden tiedot APIsta ja tallentaa ne tietokantaan
