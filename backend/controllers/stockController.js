@@ -1,13 +1,14 @@
 const stocksRouter = require('express').Router()
 const Stocks = require('../models/Stocks')
 
+
 stocksRouter.get('/', (request, response) => {
-    Stocks.find({}).then(stocks => {
+    Stocks.find({}).populate('Messages').then(stocks => {
       response.json(stocks.map(a => a.toJSON()))
     })
   })
   stocksRouter.get('/:id', (request, response) => {
-    Stocks.findById(request.params.id)
+    Stocks.findById(request.params.id).populate('Messages')
       .then(a => {
         if (a) {
           response.json(a.toJSON())

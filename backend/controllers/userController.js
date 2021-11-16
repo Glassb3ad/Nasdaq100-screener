@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt')
-const user = require('../models/user')
 const usersRouter = require('express').Router()
 const User = require('../models/user')
 

@@ -47,6 +47,11 @@ Beta: String,
 SharesOutstanding: String,
 DividendDate: String,
 ExDividendDate: String,
-})
+Messages: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Message'
+}]
+}, 
+{strictPopulate: false})
 
 module.exports =  mongoose.model("Stock", stockSchema)
