@@ -7,7 +7,7 @@ const stocksRouter = require('./controllers/stockController')
 const userRouter = require('./controllers/userController')
 const loginRouter = require('./controllers/loginController')
 const messageRouter = require('./controllers/messageController')
-
+const cors = require('cors')
 const app = express()
 
 mongoose.connect(`mongodb+srv://jhalah:Muuli33@cluster0.ka30p.mongodb.net/Stocks?retryWrites=true&w=majority`)
@@ -19,6 +19,7 @@ console.log('error connecting to MongoDB --stocks:', error.message)
 })
 
 app.use(express.json())
+app.use(cors())
 app.use('/api/stocks',stocksRouter)
 app.use('/api/users',userRouter)
 app.use('/api/login', loginRouter)
