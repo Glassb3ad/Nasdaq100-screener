@@ -1,6 +1,6 @@
 import stockService from '../services/stockService' 
 
-const stockReducer = (state, action) => {
+const stockReducer = (state = null, action) => {
     switch(action.type){
         case 'ADD_STOCKS':
             return action.content
