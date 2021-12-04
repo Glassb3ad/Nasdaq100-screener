@@ -8,7 +8,7 @@ stocksRouter.get('/', (request, response) => {
     })
   })
   stocksRouter.get('/:id', (request, response) => {
-    Stocks.findById(request.params.id).populate('Messages')
+    (Stocks.findById(request.params.id).populate('Messages')).populate()
       .then(a => {
         if (a) {
           response.json(a.toJSON())

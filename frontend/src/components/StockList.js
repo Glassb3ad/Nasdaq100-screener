@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSelector } from 'react-redux'
+import { Link } from "react-router-dom"
 
 
 const StockList = (props) => {  
@@ -43,7 +44,7 @@ const StockRow = props => {
     const stock = props.stock
     return (
         <tr>
-            <td>{stock.Name}</td>
+            <td><Link to = {`stocks/${stock._id}`} >{stock.Name}</Link></td>
             <td>{stock[props.parameter]}</td>
             <td>{stock.Sector}</td>
         </tr>
