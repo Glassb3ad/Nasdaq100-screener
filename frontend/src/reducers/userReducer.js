@@ -6,6 +6,12 @@ const userReducer = (state = null, action) => {
             return action.parameter
         case 'REMOVE':
             return null
+        case 'ADD_STOCK':
+            const followedStocks = state.followedStocks.concat(action.stock)
+            return {...state, followedStocks : followedStocks}
+        case 'REMOVE_STOCK':
+            const newFollowedStocks = state.followedStocks.filter(a => a._id !== action.stockId)
+            return {...state, followedStocks: newFollowedStocks}
         default:
             return state
     }
@@ -23,6 +29,19 @@ export const addUser = (a) => {
 export const removeUser = () => {
     return{
         type: 'REMOVE'
+    }
+}
+
+export const followStock = (stock) => {
+    return{
+        type: 'ADD_STOCK',
+        stock: stock
+    }
+}
+export const unfollowStock = (stockId) => {
+    return{
+        type: 'REMOVE_STOCK',
+        stockId: stockId
     }
 }
 

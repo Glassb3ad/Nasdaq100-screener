@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import {useParams} from "react-router-dom"
-import userService from '../services/userService'
+import FollowStock from './FollowStock'
 
 const Stock = () => {
     let parameterId = useParams().id
@@ -11,6 +11,7 @@ const Stock = () => {
     return(
         <div>
             <h1>{stock.Name}</h1>
+            <FollowStock stock={stock}/>
             <p>{stock.Description}</p>
             <h2>Financial information</h2>
             <table>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 const FollowedStock = ({stock}) => {
     return(
         <li>
-            <Link to={`/stock/${stock._id}`}>{stock.Name}</Link>
+            <Link to={`/stocks/${stock._id}`}>{stock.Name}</Link>
         </li>
     )
 } 

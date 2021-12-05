@@ -2,7 +2,7 @@ import { useState } from "react"
 import userService from "../services/userService"
 import { addUser, removeUser } from "../reducers/userReducer"
 import { useSelector, useDispatch } from 'react-redux'
-
+import { addNotification, addError } from "../reducers/notificationReducer"
 
 const Login = (props) => {
     const [username, setUsername] = useState('')
@@ -15,8 +15,10 @@ const Login = (props) => {
         try{
             const user = await userService.login({username, password})
             dispatch(addUser(user))
+            dispatch(addNotification(`Logged in as ${user.username} `))
+            setVisible(false)
         }
-        catch(error){console.log(error)}
+        catch(error){console.log(error.data); dispatch(addError("Username or password is invalid"))}
         setPassword('')
         setUsername('')
     }
@@ -24,7 +26,7 @@ const Login = (props) => {
     //if user is logged in, show logOut -button
     if(user){
         return(
-            <button onClick = {() => {dispatch(removeUser())}}>logOut</button>
+            <button onClick = {() => {dispatch(removeUser()); dispatch(addNotification(`${user.username} has logged out`))}}>logOut</button>
         )
     }
     //Shows login -button if no user is logged in and login -button is not pressed yet

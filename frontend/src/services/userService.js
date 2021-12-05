@@ -7,9 +7,18 @@ const login = async credentials => {
   return response.data
 }
 const findById = async id => {
-  const response = await axios.get(userUrl+'/'+id)
+  try{ 
+    const response = await axios.get(userUrl+'/'+id)
+    return response.data
+  }
+  catch(error){return error.error}
+}
+const newAccount = async (user) => {
+  console.log(user)
+  const response = await axios.post(userUrl, user)
+  console.log(response)
   return response.data
 }
 
-const userService = {login, findById}
+const userService = {login, findById, newAccount}
 export default userService;
