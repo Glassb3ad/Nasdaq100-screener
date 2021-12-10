@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom"
-
+import {useDispatch } from "react-redux"
+import { unfollowStock } from "../reducers/userReducer"
 const FollowedStock = ({stock}) => {
+    const dispatch = useDispatch()
+    const unfollow = () => {
+        dispatch(unfollowStock(stock._id))
+    }
     return(
         <li>
-            <Link to={`/stocks/${stock._id}`}>{stock.Name}</Link>
+            <Link to={`/stocks/${stock._id}`}>{stock.Name}</Link> <button onClick={unfollow}>unfollow</button>
         </li>
     )
 } 
