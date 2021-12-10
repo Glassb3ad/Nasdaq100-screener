@@ -8,6 +8,7 @@ import Login from './components/Login'
 import UserPage from './components/UserPage'
 import RegisterPage from './components/RegisterPage'
 import Notification from './components/Notification'
+import DirectSearch from './components/directSearch'
 
 
 const App = () => {
@@ -23,7 +24,7 @@ const App = () => {
   console.log(useSelector(state => state.stocks))
   console.log(useSelector(state => state.parameters))
 
-
+  if(useSelector(state => state.stocks) == null) return (<></>)
   return(
       <Router>
       <div>
@@ -32,6 +33,7 @@ const App = () => {
           ? <Link to='/user'>{user.username}</Link>
           : <Link to="/register">sign up</Link>
         }
+        <DirectSearch/>
       </div>
       <div>
         <Login/>  
