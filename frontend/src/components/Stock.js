@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import {useParams} from "react-router-dom"
 import FollowStock from './FollowStock'
+import MessageForm from './MessageForm'
 
 const Stock = () => {
     let parameterId = useParams().id
@@ -134,6 +135,7 @@ const Stock = () => {
             </table>
             <h2>Discussion</h2>
             <Messages stock = {stock}/>
+            <MessageForm stock = {stock}/>
         </div>
     )
 }
@@ -152,7 +154,7 @@ const Messages = ({stock}) => {
         {stock.Messages.map((a) => {
             return(
                 <div>
-                    <p> username: {a.sender}. Date: {a.date}</p>
+                    <p> username: {a.sender}. Date: {a.date ? a.date : Date()}</p>
                     <p>{a.content}</p>
                 </div>
             )

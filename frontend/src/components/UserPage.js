@@ -24,6 +24,7 @@ const UserPage = (props) => {
             <ul>
                 {user.followedStocks.map((a) => <FollowedStock stock ={a}/>)}
             </ul>
+            <h2>Notebook</h2>
         </div>        
     )
 }
