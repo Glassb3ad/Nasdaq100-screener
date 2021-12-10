@@ -8,9 +8,11 @@ const userReducer = (state = null, action) => {
             return null
         case 'ADD_STOCK':
             const followedStocks = state.followedStocks.concat(action.stock)
+            userService.updateStocklist(followedStocks, state)
             return {...state, followedStocks : followedStocks}
         case 'REMOVE_STOCK':
             const newFollowedStocks = state.followedStocks.filter(a => a._id !== action.stockId)
+            userService.updateStocklist(newFollowedStocks, state)
             return {...state, followedStocks: newFollowedStocks}
         default:
             return state
@@ -23,7 +25,7 @@ export const addUser = (a) => {
         dispatch(
         {
             type: 'ADD_USER',
-            parameter: user 
+            parameter: {...user, token : a.token} 
         })}
 }
 export const removeUser = () => {

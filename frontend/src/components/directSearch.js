@@ -14,12 +14,12 @@ const DirectSearch = (props) => {
         else{
             const newFilteredStocks = stocks
                 .filter(a => {
-                if(a.Name == undefined) return false
+                if(a.Name === undefined) return false
                 return (a.Name.toLowerCase().includes(event.target.value.toLowerCase())) 
                 })
                 .sort((a,b) => {
-                    if(a.Name == undefined) return -1;
-                    if( b.Name == undefined) return 1;
+                    if(a.Name === undefined) return -1;
+                    if( b.Name === undefined) return 1;
                     if(a.Name.toLowerCase() === b.Name.toLowerCase()) return 0;
                     if(a.Name.toLowerCase() > b.Name.toLowerCase()) return 1
                     else return -1

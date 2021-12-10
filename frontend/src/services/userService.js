@@ -2,6 +2,10 @@ import axios from 'axios'
 const loginUrl = 'http://localhost:3001/api/login'
 const userUrl = 'http://localhost:3001/api/users'
 
+let token = null
+const setToken = newToken => {
+  token = `bearer ${newToken}`
+}
 const login = async credentials => {
   const response = await axios.post(loginUrl, credentials)
   return response.data
@@ -20,5 +24,20 @@ const newAccount = async (user) => {
   return response.data
 }
 
-const userService = {login, findById, newAccount}
+const updateStocklist = async (Stocks, user) => {
+  setToken(user.token)
+  const stocksId = Stocks.map(a => a._id)
+  const body = { 
+    followedStocks: stocksId
+  }
+  const config = {
+    headers: { Authorization: token },
+  }
+  console.log(body)
+  const response = await axios.put(userUrl + "/"+user.id, body, config)
+  console.log(response)
+  return response.data
+}
+
+const userService = {login, findById, newAccount, updateStocklist}
 export default userService;

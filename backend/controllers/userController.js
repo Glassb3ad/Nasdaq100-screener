@@ -1,6 +1,15 @@
 const bcrypt = require('bcrypt')
 const usersRouter = require('express').Router()
 const User = require('../models/user')
+const jwt = require('jsonwebtoken')
+
+const getTokenFrom = request => {
+  const authorization = request.get('authorization')
+  if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
+    return authorization.substring(7)
+  }
+  return null
+}
 
 usersRouter.post('/', async (request, response) => {
     const body = request.body
@@ -39,11 +48,17 @@ usersRouter.post('/', async (request, response) => {
 
   usersRouter.put('/:id', (request, response, next) => {
     const body = request.body
-  
+    const token = getTokenFrom(request)
+    if (!token) {
+        return response.status(401).json({ error: 'token missing' })
+    }
+    let decodedToken
+    try{decodedToken = jwt.verify(token, "12eqeq234tr")}
+    catch(error){console.log("token invalid"); return response.status(401).json({ error: 'token invalid' })}
+    if(decodedToken.id !== request.params.id) return response.status(401).json({ error: 'Cannot modify other users stocklists'})
     const user = {
       followedStocks: body.followedStocks
     }
-  
     User.findByIdAndUpdate(request.params.id, user, { new: true })
       .then(updatedUser => {
         response.json(updatedUser)
