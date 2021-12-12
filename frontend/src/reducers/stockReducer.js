@@ -1,3 +1,4 @@
+import messageService from '../services/messageService'
 import stockService from '../services/stockService' 
 
 const stockReducer = (state = null, action) => {
@@ -7,6 +8,7 @@ const stockReducer = (state = null, action) => {
         case 'ADD_COMMENT':
             const stock = state.find(a => a._id === action.content.commentedStock)
             const messages = stock.Messages.concat(action.content)
+            messageService.addNew(action.content, action.user).then((response) => {console.log(response)})
             const newStock = {...stock, Messages: messages}
             const newState = state.map(a => {
                 if(a._id === action.content.commentedStock) return newStock
@@ -27,10 +29,11 @@ export const initStocks = () => {
         })
     }
 }
-export const addMessage = (message) => {
+export const addMessage = (message, user) => {
     return({
         type: 'ADD_COMMENT',
-        content: message
+        content: message,
+        user: user
     })
 } 
 

@@ -7,14 +7,17 @@ const MessageForm = (props) => {
     const [comment, setComment] = useState("")
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
-    const handleComment = () => {
+    const handleComment = (event) => {
+        event.preventDefault()
         const Message = {
             commentedStock : props.stock._id,
             sender : user.id,
-            content: comment
+            senderName : user.username,
+            content: comment,
+            date: Date()
         }
         console.log(Message);
-        dispatch(addMessage(Message));
+        dispatch(addMessage(Message, user));
         setComment("")
         setVisible(false);
     }

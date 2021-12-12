@@ -140,7 +140,7 @@ const Stock = () => {
     )
 }
 
-//This component helps Stock module to render discussions about the stock
+//This component helps Stock component to render messages
 const Messages = ({stock}) => {
     if(!stock.Messages || stock.Messages.length === 0) {
         return (
@@ -154,7 +154,7 @@ const Messages = ({stock}) => {
         {stock.Messages.map((a) => {
             return(
                 <div>
-                    <p> username: {a.sender}. Date: {a.date ? a.date : Date()}</p>
+                    <p> user {a.senderName}. {a.date} </p>
                     <p>{a.content}</p>
                 </div>
             )
