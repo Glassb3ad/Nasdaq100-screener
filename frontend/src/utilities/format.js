@@ -9,6 +9,7 @@ export const formatValue = (stock, parameter) => {
         case("QuarterlyRevenueGrowthYOY"): return (Math.round(Number(stock[parameter]) * 10000)/100 + '%')
         case("QuarterlyEarningsGrowthYOY"): return (Math.round(Number(stock[parameter]) * 10000)/100 + '%')
         case('EBITDA'): return (Math.round((Number(stock[parameter]) / 1000000000) * 1000)/1000)
+        case('ProfitMargin'): return (Math.round(Number(stock[parameter]) * 10000)/100 + '%')
         default: return stock[parameter]
     }
 }

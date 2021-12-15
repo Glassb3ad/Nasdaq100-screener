@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom"
 import FollowStock from './FollowStock'
 import MessageForm from './MessageForm'
 import { formatValue, formatParameter, formatDate } from '../utilities/format'
-
+import Info from './Info'
 const Stock = () => {
     let parameterId = useParams().id
     const stocks = useSelector(state => state.stocks)
@@ -20,6 +20,7 @@ const Stock = () => {
         RevenuePerShareTTM: stock.RevenuePerShareTTM,
         QuarterlyRevenueGrowthYOY: stock.QuarterlyRevenueGrowthYOY,
         GrossProfitTTM: stock.GrossProfitTTM,
+        ProfitMargin: stock.ProfitMargin,
         EBITDA: stock.EBITDA,
         EPS: stock.EPS,
         DilutedEPSTTM: stock.DilutedEPSTTM,
@@ -50,6 +51,9 @@ const Stock = () => {
             <h2>Discussion</h2>
             <Messages stock = {stock}/>
             <MessageForm stock = {stock}/>
+            <footer>
+                <Info/>
+            </footer>
         </div>
     )
 }
@@ -60,13 +64,18 @@ const FinancialInformation = ({data}) => {
     console.log(data)
     console.log("Data as array: ");
     console.log(Object.entries(data))
+    let key = 1;
     return (
         <table>
-            {Object.entries(data).map(a => 
-                <tr>
-                    <th>{formatParameter(a[0])}</th>
-                    <td>{formatValue(data, a[0])}</td>
-                </tr>)}
+            {Object.entries(data).map(a =>{
+                key++;
+                return(
+                    <tr key={key}>
+                        <th>{formatParameter(a[0])}</th>
+                        <td>{formatValue(data, a[0])}</td>
+                    </tr>
+                )
+            })}
         </table>
     )
 }
@@ -84,7 +93,7 @@ const Messages = ({stock}) => {
         <div>
         {stock.Messages.map((a) => {
             return(
-                <div>
+                <div key={a.id}>
                     <p> user {a.senderName}. {formatDate(a.date)} </p>
                     <p>{a.content}</p>
                 </div>

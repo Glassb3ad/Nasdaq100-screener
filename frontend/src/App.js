@@ -10,7 +10,6 @@ import RegisterPage from './components/RegisterPage'
 import Notification from './components/Notification'
 import DirectSearch from './components/directSearch'
 
-
 const App = () => {
   const dispatch = useDispatch()
   //At start we fetch relevant stock data from server and put them into reudx storage
