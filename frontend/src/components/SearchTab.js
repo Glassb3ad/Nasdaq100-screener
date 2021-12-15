@@ -22,22 +22,21 @@ const SearchTab = () => {
             <form onSubmit = {handleSub}>
                 <div>
                 <label for="parameter">Parameter</label>
-                <input type="radio" name="parameter" value="MarketCapitalization"/>MarketCapitalization
-                <input type="radio" name="parameter" value="PERatio"/>PERatio
-                <input type="radio" name="parameter" value="PEGRatio"/>PEGRatio
-                <input type="radio" name="parameter" value="DividendPerShare"/>DividendPerShare
+                <input type="radio" name="parameter" value="MarketCapitalization"/>Market capitalization
+                <input type="radio" name="parameter" value="PERatio"/>P/E
+                <input type="radio" name="parameter" value="PEGRatio"/>PEG
+                <input type="radio" name="parameter" value="DividendPerShare"/>Dividend per share
                 <input type="radio" name="parameter" value="EPS"/>EPS
-                <input type="radio" name="parameter" value="ProfitMargin"/>ProfitMargin
-                <input type="radio" name="parameter" value="ReturnOnAssetsTTM"/>ReturnOnAssetsTTM
-                <input type="radio" name="parameter" value="ReturnOnEquityTTM"/>ReturnOnEquityTTM
-                <input type="radio" name="parameter" value="RevenueTTM"/>RevenueTTM
-                <input type="radio" name="parameter" value="TrailingPE"/>TrailingPE
-                <input type="radio" name="parameter" value="ForwardPE"/>ForwardPE
-                <input type="radio" name="parameter" value="PriceToSalesRatioTTM"/>PriceToSalesRatioTTM
-                <input type="radio" name="parameter" value="PriceToBookRatio"/>PriceToBookRatio
+                <input type="radio" name="parameter" value="ProfitMargin"/>Profit margin
+                <input type="radio" name="parameter" value="ReturnOnAssetsTTM"/>ROA
+                <input type="radio" name="parameter" value="ReturnOnEquityTTM"/>ROE
+                <input type="radio" name="parameter" value="RevenueTTM"/>Revenue
+                <input type="radio" name="parameter" value="TrailingPE"/>Trailing P/E
+                <input type="radio" name="parameter" value="ForwardPE"/>Forward P/E
+                <input type="radio" name="parameter" value="PriceToSalesRatioTTM"/>P/S
+                <input type="radio" name="parameter" value="PriceToBookRatio"/>P/B
                 <input type="radio" name="parameter" value="Beta"/>Beta
-                <input type="radio" name="parameter" value="SharesOutstanding"/>SharesOutstanding
-                <input type="radio" name="parameter" value="DividendYield"/>DividendYield
+                <input type="radio" name="parameter" value="DividendYield"/>Dividend yield
                 </div>
                 <div>
                 <label for="Order">Order</label>

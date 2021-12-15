@@ -14,7 +14,7 @@ const MessageForm = (props) => {
             sender : user.id,
             senderName : user.username,
             content: comment,
-            date: Date()
+            date: (new Date()).toISOString()
         }
         console.log(Message);
         dispatch(addMessage(Message, user));

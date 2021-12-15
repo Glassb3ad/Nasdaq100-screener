@@ -14,8 +14,8 @@ const getTokenFrom = request => {
 
 messageRouter.get('/', (request, response) => {
     Message.find({}).populate('commentedStock',{_id: 1, Name: 1, Symbol: 1}).populate('sender',{_id: 1, username: 1})
-    .then(users => {
-      response.json(users.map(a => a.toJSON()))
+    .then(result => {
+      response.json(result.map(a => a.toJSON()))
     })
 })
 
@@ -37,7 +37,8 @@ messageRouter.post('/', async (request, response) => {
       content: body.content,
       commentedStock: body.commentedStock,
       date: new Date(),
-      sender: user._id
+      sender: user._id,
+      senderName: user.username
     })
   
     const savedMessage = await newMessage.save()

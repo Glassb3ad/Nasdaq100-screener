@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux'
 import {useParams} from "react-router-dom"
 import FollowStock from './FollowStock'
 import MessageForm from './MessageForm'
+import { formatValue, formatParameter, formatDate } from '../utilities/format'
 
 const Stock = () => {
     let parameterId = useParams().id
@@ -9,134 +10,64 @@ const Stock = () => {
     if(!stocks) return (<></>)
     const stock = stocks.find(a => {
         return a._id === parameterId})
+    
+    // This object is used to reder all relevant financial data and ignore the rest. 
+    const financialDataOfStock = {
+        Sector: stock.Sector,
+        Industry: stock.Industry,
+        MarketCapitalization: stock.MarketCapitalization,
+        RevenueTTM : stock.RevenueTTM,
+        RevenuePerShareTTM: stock.RevenuePerShareTTM,
+        QuarterlyRevenueGrowthYOY: stock.QuarterlyRevenueGrowthYOY,
+        GrossProfitTTM: stock.GrossProfitTTM,
+        EBITDA: stock.EBITDA,
+        EPS: stock.EPS,
+        DilutedEPSTTM: stock.DilutedEPSTTM,
+        QuarterlyEarningsGrowthYOY: stock.QuarterlyEarningsGrowthYOY,
+        BookValue: stock.BookValue,
+        PERatio: stock.PERatio,
+        PEGRatio: stock.PEGRatio,
+        ForwardPE: stock.ForwardPE,
+        TrailingPE: stock.TrailingPE,
+        PriceToBookRatio: stock.PriceToBookRatio,
+        PriceToSalesRatioTTM: stock.PriceToSalesRatioTTM,
+        ReturnOnAssetsTTM: stock.ReturnOnAssetsTTM,
+        ReturnOnEquityTTM: stock.ReturnOnEquityTTM,
+        EVToRevenue: stock.EVToRevenue,
+        EVToEBITDA: stock.EVToEBITDA,
+        Beta: stock.Beta,
+        DividendPerShare: stock.DividendPerShare,
+        DividendYield: stock.DividendYield
+    }  
+    
     return(
         <div>
             <h1>{stock.Name}</h1>
             <FollowStock stock={stock}/>
             <p>{stock.Description}</p>
             <h2>Financial information</h2>
-            <table>
-                <tr>
-                    <th>Sector</th>
-                    <td>{stock.Sector}</td>
-                </tr>
-                <tr>
-                    <th>Industry</th>
-                    <td>{stock.Industry}</td>
-                </tr>
-                <tr>
-                    <th>Market Capitalization</th>
-                    <td>{ Math.round((Number(stock.MarketCapitalization) / 1000000000) * 100)/100} billion USD</td>
-                </tr>
-                <tr>
-                    <th>PE Ratio</th>
-                    <td>{stock.PERatio}</td>
-                </tr>
-                <tr>
-                    <th>PEG Ratio</th>
-                    <td>{stock.PEGRatio}</td>
-                </tr>
-                <tr>
-                    <th>Book Value</th>
-                    <td>{stock.BookValue}</td>
-                </tr>
-                <tr>
-                    <th>Divident per share</th>
-                    <td>{stock.DividendPerShare}</td>
-                </tr>
-                <tr>
-                    <th>Dividend yield</th>
-                    <td>{stock.DividendYield}</td>
-                </tr>
-                <tr>
-                    <th>EPS</th>
-                    <td>{stock.EPS}</td>
-                </tr>
-                <tr>
-                    <th>Revenue per share</th>
-                    <td>{stock.RevenuePerShareTTM}</td>
-                </tr>
-                <tr>
-                    <th>Profit margin</th>
-                    <td>{stock.ProfitMargin}</td>
-                </tr>
-                <tr>
-                    <th>Operating margin</th>
-                    <td>{stock.OperatingMarginTTM}</td>
-                </tr>
-                <tr>
-                    <th>ReturnOnAssets</th>
-                    <td>{stock.ReturnOnAssetsTTM}</td>
-                </tr>
-                <tr>
-                    <th>Return on equity</th>
-                    <td>{stock.ReturnOnEquityTTM}</td>
-                </tr>
-                <tr>
-                    <th>Revenue</th>
-                    <td>{stock.RevenueTTM}</td>
-                </tr>
-                <tr>
-                    <th>Quarterly earnings growth YOY</th>
-                    <td>{stock.QuarterlyEarningsGrowthYOY}</td>
-                </tr>
-                <tr>
-                    <th>Analyst target price</th>
-                    <td>{stock.AnalystTargetPrice}</td>
-                </tr>
-                <tr>
-                    <th>Quarterly revenue growth YOY</th>
-                    <td>{stock.QuarterlyRevenueGrowthYOY}</td>
-                </tr>
-                <tr>
-                    <th>Trailing PE</th>
-                    <td>{stock.TrailingPE}</td>
-                </tr>
-                <tr>
-                    <th>Forward PE</th>
-                    <td>{stock.ForwardPE}</td>
-                </tr>
-                <tr>
-                    <th>Price-to-sales ratio</th>
-                    <td>{stock.PriceToSalesRatioTTM}</td>
-                </tr>
-                <tr>
-                    <th>Price-to-book ratio</th>
-                    <td>{stock.PriceToBookRatio}</td>
-                </tr>
-                <tr>
-                    <th>EV to revenue</th>
-                    <td>{stock.EVToRevenue}</td>
-                </tr>
-                <tr>
-                    <th>EV to EBITDA</th>
-                    <td>{stock.EVToEBITDA}</td>
-                </tr>
-                <tr>
-                    <th>Beta</th>
-                    <td>{stock.Beta}</td>
-                </tr>
-                <tr>
-                    <th>52 week high</th>
-                    <td>{stock["52WeekHigh"]}</td>
-                </tr>
-                <tr>
-                    <th>52 Week Low</th>
-                    <td>{stock["52WeekLow"]}</td>
-                </tr>
-                <tr>
-                    <th>SharesOutstanding</th>
-                    <td>{stock.SharesOutstanding}</td>
-                </tr>
-                <tr>
-                    <th>Dividend date</th>
-                    <td>{stock.DividendDate}</td>
-                </tr>
-            </table>
+            <FinancialInformation data={financialDataOfStock}/>
             <h2>Discussion</h2>
             <Messages stock = {stock}/>
             <MessageForm stock = {stock}/>
         </div>
+    )
+}
+
+//This component renders all financial information in a table.
+const FinancialInformation = ({data}) => {
+    console.log("Data: ")
+    console.log(data)
+    console.log("Data as array: ");
+    console.log(Object.entries(data))
+    return (
+        <table>
+            {Object.entries(data).map(a => 
+                <tr>
+                    <th>{formatParameter(a[0])}</th>
+                    <td>{formatValue(data, a[0])}</td>
+                </tr>)}
+        </table>
     )
 }
 
@@ -154,7 +85,7 @@ const Messages = ({stock}) => {
         {stock.Messages.map((a) => {
             return(
                 <div>
-                    <p> user {a.senderName}. {a.date} </p>
+                    <p> user {a.senderName}. {formatDate(a.date)} </p>
                     <p>{a.content}</p>
                 </div>
             )

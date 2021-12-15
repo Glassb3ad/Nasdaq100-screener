@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
-
+import { formatValue, formatParameter } from "../utilities/format"
 
 const StockList = (props) => {  
     const stocks =  useSelector(state => state.stocks)
@@ -30,7 +30,7 @@ const StockList = (props) => {
             <table>
                 <tr>
                     <th>Company</th>
-                    <th>{parameter}</th>
+                    <th>{formatParameter(parameter)}</th>
                     <th>Sector</th>
                 </tr>
                 {orderedStocks.slice(firstStock,lastStock).map(stock => <StockRow stock = {stock} parameter = {parameter}/>)}
@@ -42,14 +42,16 @@ const StockList = (props) => {
 
 const StockRow = props => {
     const stock = props.stock
+    const value = formatValue(stock, props.parameter);
     return (
         <tr>
             <td><Link to = {`stocks/${stock._id}`} >{stock.Name}</Link></td>
-            <td>{stock[props.parameter]}</td>
+            <td>{value}</td>
             <td>{stock.Sector}</td>
         </tr>
     )
 }
+
 const orderStocks = (stocks, parameters) => {
         const descending = stocks.sort((a,b) => {
             if(!isNaN(Number(b[parameters[0]])) && !isNaN(Number(a[parameters[0]]))){
