@@ -9,9 +9,17 @@ const getAll = async () => {
 const getById = (id) => {
     return axios.get(baseUrl+id)
 }
-const service = {
+const getPrice = async (symbol) => {
+    try{
+        const response = await axios.get(`http://localhost:3001/api/prices/${symbol}`)
+        return response.data
+    }
+    catch(error){return error}
+}
+const stockService = {
     getAll,
-    getById
+    getById,
+    getPrice
 }
 
-export default service
+export default stockService

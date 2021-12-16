@@ -5,6 +5,7 @@ import MessageForm from './MessageForm'
 import { formatValue, formatParameter, formatDate } from '../utilities/format'
 import Info from './Info'
 import Logo from './Logo'
+import Price from './Price'
 const Stock = () => {
     let parameterId = useParams().id
     const stocks = useSelector(state => state.stocks)
@@ -44,9 +45,9 @@ const Stock = () => {
     
     return(
         <div>
-            <h1>{stock.Name}</h1>
+            <h1>{stock.Name} <FollowStock stock={stock}/></h1>
             <Logo stock={stock}/>
-            <FollowStock stock={stock}/>
+            <div><b>Current price: </b><Price stock={stock}/></div>
             <p>{stock.Description}</p>
             <h2>Financial information</h2>
             <FinancialInformation data={financialDataOfStock}/>

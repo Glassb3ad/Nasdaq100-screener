@@ -23,6 +23,14 @@ const stockReducer = (state = null, action) => {
                 return a
             })
             return newStateb
+        case 'ADD_PRICE':
+            const stockc = state.find(a => a._id === action.stockId)
+            const newStockc = {...stockc, price: action.price}
+            const newStatec = state.map(a => {
+                if(a._id === newStockc._id) return newStockc
+                return a
+            })        
+            return newStatec
         default:
             return state
     }
@@ -51,6 +59,14 @@ export const addLogo = (stockId, logo) => {
         logo: logo,
         stockId: stockId
     })
+}
+export const addPrice = (stockId, price) => {
+    console.log(price)
+    return({
+        type: 'ADD_PRICE',
+        price: price,
+        stockId: stockId
+    })    
 } 
 
 export default stockReducer

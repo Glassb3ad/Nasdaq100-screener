@@ -1,6 +1,6 @@
 const stocksRouter = require('express').Router()
 const Stocks = require('../models/Stocks')
-
+const axios = require('axios')
 
 stocksRouter.get('/', (request, response) => {
     Stocks.find({}).populate('Messages').then(stocks => {

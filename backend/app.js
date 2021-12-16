@@ -8,6 +8,8 @@ const userRouter = require('./controllers/userController')
 const loginRouter = require('./controllers/loginController')
 const messageRouter = require('./controllers/messageController')
 const logoRouter = require('./controllers/logoController')
+const indexRouter = require('./controllers/indexController.js')
+const priceRouter = require('./controllers/priceController.js')
 const cors = require('cors')
 const app = express()
 
@@ -26,6 +28,8 @@ app.use('/api/users',userRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/messages', messageRouter)
 app.use('/api/logos', logoRouter)
+app.use('/api/index', indexRouter)
+app.use('/api/prices', priceRouter)
 
 
 //Koodi hakee osakkeiden tiedot APIsta ja tallentaa ne tietokantaan
