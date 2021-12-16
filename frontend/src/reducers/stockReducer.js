@@ -15,25 +15,41 @@ const stockReducer = (state = null, action) => {
                 return a
             }) 
             return newState     
+        case 'ADD_LOGO':
+            const stockb = state.find(a => a._id === action.stockId)
+            const newStockb = {...stockb, logo: action.logo}
+            const newStateb = state.map(a => {
+                if(a._id === newStockb._id) return newStockb
+                return a
+            })
+            return newStateb
         default:
             return state
     }
 }
 
 export const initStocks = () => {
-    return async (dispatch) =>{
+    return (async (dispatch) =>{
         const stocks = await stockService.getAll()
         dispatch({
             type: 'ADD_STOCKS',
             content: stocks
         })
-    }
+    })
 }
 export const addMessage = (message, user) => {
     return({
         type: 'ADD_COMMENT',
         content: message,
         user: user
+    })
+}
+export const addLogo = (stockId, logo) => {
+    console.log(logo)
+    return({
+        type: 'ADD_LOGO',
+        logo: logo,
+        stockId: stockId
     })
 } 
 

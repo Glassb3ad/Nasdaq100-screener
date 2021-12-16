@@ -7,6 +7,7 @@ const stocksRouter = require('./controllers/stockController')
 const userRouter = require('./controllers/userController')
 const loginRouter = require('./controllers/loginController')
 const messageRouter = require('./controllers/messageController')
+const logoRouter = require('./controllers/logoController')
 const cors = require('cors')
 const app = express()
 
@@ -24,6 +25,7 @@ app.use('/api/stocks',stocksRouter)
 app.use('/api/users',userRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/messages', messageRouter)
+app.use('/api/logos', logoRouter)
 
 
 //Koodi hakee osakkeiden tiedot APIsta ja tallentaa ne tietokantaan
