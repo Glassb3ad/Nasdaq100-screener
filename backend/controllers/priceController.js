@@ -7,7 +7,7 @@ priceRouter.get('/', async (request, response) =>{
 priceRouter.get("/:symbol",  async (request, response) => {
     let symbol = request.params.symbol
     try{
-        const result = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=4DJ9VUC5XUKKZ9MW`)
+        const result = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${process.env.AVKEY2}`)
         return response.status(200).json(result.data)
 
     }

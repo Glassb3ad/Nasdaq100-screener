@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 
 const getTokenFrom = request => {
   const authorization = request.get('authorization')
-  if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
+  if (authorization && authorization.toLowerCase().startsWith('bearer ')){
     return authorization.substring(7)
   }
   return null
@@ -53,7 +53,7 @@ usersRouter.post('/', async (request, response) => {
         return response.status(401).json({ error: 'token missing' })
     }
     let decodedToken
-    try{decodedToken = jwt.verify(token, "12eqeq234tr")}
+    try{decodedToken = jwt.verify(token, process.env.TOKENCRYPT)}
     catch(error){console.log("token invalid"); return response.status(401).json({ error: 'token invalid' })}
     if(decodedToken.id !== request.params.id) return response.status(401).json({ error: 'Cannot modify other users stocklists'})
     const user = {

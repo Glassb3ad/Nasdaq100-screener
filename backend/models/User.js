@@ -15,7 +15,6 @@ const userSchema = mongoose.Schema({
         ref: 'Stock',
       }
     ],
-    //messages (will be implemented later)
   })
 
   userSchema.plugin(uniqueValidator)

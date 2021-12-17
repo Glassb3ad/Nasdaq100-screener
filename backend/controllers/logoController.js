@@ -15,7 +15,7 @@ logoRouter.get("/:name",  async (request, response) => {
     if(name.endsWith(".com")){
         name = name.slice(0,name.lastIndexOf("."))
     }
-    const newToken = "Bearer sk_0742118ba5bf54f15cd075b8c2bbb7c2"
+    const newToken = `Bearer ${process.env.LOGOAPIKEY}`
     const config = {
         headers: { Authorization: newToken },
     }

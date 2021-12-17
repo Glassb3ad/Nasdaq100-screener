@@ -29,7 +29,7 @@ messageRouter.post('/', async (request, response) => {
         return response.status(401).json({ error: 'token missing' })
     }
     let decodedToken
-    try{decodedToken = jwt.verify(token, "12eqeq234tr")}
+    try{decodedToken = jwt.verify(token, process.env.TOKENCRYPT)}
     catch(error){return response.status(401).json({ error: 'token invalid' })}
     const user = await User.findById(decodedToken.id)
   
@@ -60,10 +60,9 @@ messageRouter.delete('/:id', async (request, response) => {
         return response.status(401).json({ error: 'token missing' })
     }
     let decodedToken
-    try{decodedToken = jwt.verify(token, "12eqeq234tr")}
+    try{decodedToken = jwt.verify(token, process.env.TOKENCRYPT)}
     catch(error){return response.status(401).json({ error: 'token invalid' })}
     if(decodedToken.id == message.sender){
-        console.log("here we are. This is message id: " + request.params.id)
         await Message.findByIdAndRemove(request.params.id)
         return response.status(200).json(message.toJSON())
     }
