@@ -8,6 +8,7 @@ const Price = ({stock}) => {
     useEffect(() => {
         if(stock.price){
             try{
+                console.log(stock.price)
                 const prices =  Object.values(stock.price["Time Series (Daily)"])
                 const price = prices[0]["4. close"]
                 console.log(price)

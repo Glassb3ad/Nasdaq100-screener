@@ -6,6 +6,7 @@ const Screener = (props) => {
     return(
         <>
             <Nasdaq100/>
+            <h1>Stock Screener</h1>
             <SearchTab/>
             <StockList/>
             <footer>

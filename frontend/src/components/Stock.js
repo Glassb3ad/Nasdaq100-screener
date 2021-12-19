@@ -6,6 +6,7 @@ import { formatValue, formatParameter, formatDate } from '../utilities/format'
 import Info from './Info'
 import Logo from './Logo'
 import Price from './Price'
+import StockChart from './StockChart'
 const Stock = () => {
     let parameterId = useParams().id
     const stocks = useSelector(state => state.stocks)
@@ -48,6 +49,8 @@ const Stock = () => {
             <h1>{stock.Name} <FollowStock stock={stock}/></h1>
             <Logo stock={stock}/>
             <div><b>Current price: </b><Price stock={stock}/></div>
+            <StockChart stock = {stock}/>
+            <h2>Description</h2>
             <p>{stock.Description}</p>
             <h2>Financial information</h2>
             <FinancialInformation data={financialDataOfStock}/>
