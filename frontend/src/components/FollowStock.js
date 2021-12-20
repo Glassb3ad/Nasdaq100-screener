@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux"
 import { followStock, unfollowStock } from "../reducers/userReducer"
 import { addNotification } from "../reducers/notificationReducer"
+import { Button } from "react-bootstrap"
 const FollowStock = (props) => {
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
@@ -16,9 +17,9 @@ const FollowStock = (props) => {
     if(!user) return (<></>)
     if(!user.followedStocks) return(<button onClick = {follow}>Follow</button>)
     if(user.followedStocks.find(a => a._id === stock._id)){
-        return(<button onClick = {unfollow}>Unfollow</button>)
+        return(<Button variant='primary' size='lg' onClick = {unfollow}>Unfollow</Button>)
     }
-    else return (<button onClick = {follow}>Follow</button>)
+    else return (<Button variant='primary' size='lg' onClick = {follow}>Follow</Button>)
 }
 
 export default FollowStock

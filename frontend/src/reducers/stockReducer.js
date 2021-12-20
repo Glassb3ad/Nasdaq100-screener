@@ -8,7 +8,7 @@ const stockReducer = (state = null, action) => {
         case 'ADD_COMMENT':
             const stock = state.find(a => a._id === action.content.commentedStock)
             const messages = stock.Messages.concat(action.content)
-            messageService.addNew(action.content, action.user).then((response) => {console.log(response)})
+            messageService.addNew(action.content, action.user)
             const newStock = {...stock, Messages: messages}
             const newState = state.map(a => {
                 if(a._id === action.content.commentedStock) return newStock
@@ -53,7 +53,6 @@ export const addMessage = (message, user) => {
     })
 }
 export const addLogo = (stockId, logo) => {
-    console.log(logo)
     return({
         type: 'ADD_LOGO',
         logo: logo,
@@ -61,7 +60,7 @@ export const addLogo = (stockId, logo) => {
     })
 }
 export const addPrice = (stockId, price) => {
-    console.log(price)
+
     return({
         type: 'ADD_PRICE',
         price: price,

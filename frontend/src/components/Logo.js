@@ -6,7 +6,7 @@ const Logo = (props) => {
     const stock = props.stock
     if(!stock || stock.logo === 'noLogoAvailable') return (<></>)
     if(stock.logo){
-        return (<img alt="logo" src={stock.logo}/>) 
+        return (<div style = {{paddingBottom : "30px"}}><img alt="logo" src={stock.logo}/></div>) 
     }
     logoService.getLogo(stock.Name)
         .then(ret => {

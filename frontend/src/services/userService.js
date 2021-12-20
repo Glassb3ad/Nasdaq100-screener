@@ -18,9 +18,7 @@ const findById = async id => {
   catch(error){return error.error}
 }
 const newAccount = async (user) => {
-  console.log(user)
   const response = await axios.post(userUrl, user)
-  console.log(response)
   return response.data
 }
 
@@ -33,9 +31,7 @@ const updateStocklist = async (Stocks, user) => {
   const config = {
     headers: { Authorization: token },
   }
-  console.log(body)
   const response = await axios.put(userUrl + "/"+user.id, body, config)
-  console.log(response)
   return response.data
 }
 

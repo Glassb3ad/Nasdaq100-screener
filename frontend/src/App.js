@@ -9,6 +9,7 @@ import UserPage from './components/UserPage'
 import RegisterPage from './components/RegisterPage'
 import Notification from './components/Notification'
 import DirectSearch from './components/directSearch'
+import { Navbar, Nav } from 'react-bootstrap'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -17,26 +18,27 @@ const App = () => {
     dispatch(initStocks())
   }, [dispatch], 0)
   let user = useSelector(state => state.user)
-  console.log(user)
   if(!user) user = null
-
-  console.log(useSelector(state => state.stocks))
-  console.log(useSelector(state => state.parameters))
-
   if(useSelector(state => state.stocks) == null) return (<></>)
   return(
       <Router>
-      <div>
-        <Link to='/'>Stocks  </Link>    
-        {user 
-          ? <Link to='/user'>{user.username}</Link>
-          : <Link to="/register">sign up</Link>
-        }
-        <DirectSearch/>
-      </div>
-      <div>
-        <Login/>  
-      </div>
+      <Navbar class="navbar sticky-top navbar-dark" style ={{backgroundColor :'#2a282b'}} >
+          <div class="d-flex flex-row bd-highlight mb-3">    
+              <Nav.Link href="#" as="span">
+              <Link class="navbar-brand" to='/'>Stocks  </Link>    
+              </Nav.Link>
+              <Nav.Link href="#" as="span">
+              {user 
+                ? <Link class="navbar-brand" to='/user'>{user.username} </Link>
+                : <Link class="navbar-brand" to="/register">sign up</Link>
+              }
+              </Nav.Link>
+              <Nav.Link href="#" as="span">
+              <Login class="navbar-brand"/>
+              </Nav.Link>
+          </div>
+              <DirectSearch class="navbar-brand"/>
+      </Navbar>
       <Notification/> 
       <Switch>
           <Route path="/stocks/:id">
@@ -49,7 +51,7 @@ const App = () => {
             <RegisterPage/>
           </Route>
           <Route path='/'>
-            <Screener/>
+            <div style = {{paddingTop: '30px', paddingLeft: '80px', paddingRight : '50px', backgroundColor: '#fafeff'}}><Screener /></div>
           </Route>
       </Switch>
     </Router>

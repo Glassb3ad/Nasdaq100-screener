@@ -1,7 +1,5 @@
 import {Line} from 'react-chartjs-2';
 import { Chart as ChartJS } from 'chart.js/auto'
-import { Chart1 } from 'react-chartjs-2'
-
 const StockChart = ({stock}) => {
     if(!stock.price){
         return <></>
@@ -10,7 +8,6 @@ const StockChart = ({stock}) => {
         return <></>
     }
     const dates = Object.getOwnPropertyNames(stock.price["Time Series (Daily)"]).reverse()
-    console.log(dates)
     const closeValues = dates.map(a => stock.price["Time Series (Daily)"][a]["4. close"])
     const state = {
         labels: dates,
@@ -28,7 +25,7 @@ const StockChart = ({stock}) => {
         ]
     }
     return (
-        <div style={{width:"80%", height:"80%"}}>
+        <div style={{paddingTop: "20px", width:"80%", height:"80%"}}>
         <h2>History</h2>
         <Line
         data={state}

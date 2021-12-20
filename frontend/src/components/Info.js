@@ -1,7 +1,7 @@
 const Info = () =>
 {
     return(
-        <div style={{background: "rgb(226, 227, 228)"}}>
+        <div class="w-100 p-3" style={{background: "rgb(226, 227, 228)"}}>
             <h3>Meaning of key figures</h3>
                 <div>
                     <b>Market capitalization: </b>
@@ -25,7 +25,7 @@ const Info = () =>
                 </div>
                 <div>
                     <b>P/E: </b>
-                    Share price divided by Earnings per share.   
+                    Share price divided by EPS.   
                 </div>
                 <div>
                     <b>PEG: </b>
@@ -45,7 +45,7 @@ const Info = () =>
                 </div>
                 <div>
                     <b>P/S: </b>
-                    Market capitalization divided by revenue.                       
+                    Market capitalization divided by the revenue.                       
                 </div>
                 <div>
                     <b>ROA: </b>
@@ -61,7 +61,7 @@ const Info = () =>
                 </div>
                 <div>
                     <b>EV to revenue: </b>
-                    Enterprise value divided by revenue.  
+                    Enterprise value divided by the revenue.  
                 </div>
                 <div>
                     <b>EV To EBITDA: </b>

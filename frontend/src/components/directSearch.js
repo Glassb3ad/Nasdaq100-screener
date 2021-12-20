@@ -34,15 +34,14 @@ const DirectSearch = (props) => {
     }
 
     return (
-        <div>
-            <form>
-                search: <input type = 'text' value={filter} onChange={Filt}></input>
-            </form>
-            <div>
+        <div class="dropdown" style={{float:'left', padding: '10px' }}>
+            <div class="dropdown-content" >
+                <input  class="dropdown-item" value={filter} onChange={Filt} type="search" placeholder="Search" aria-label="Search" style={{backgroundColor : 'white'}}></input>
+                <div style={{ position: 'absolute', backgroundColor: '#f9f9f9', minWidth: '230px', zIndex: '1', border: '1px solid'}}>
                 {filteredStocks.slice(0,5).map(a =>{
-                    return(<p><Link to = {`/stocks/${a._id}`} onClick = {emptyResults}>{a.Name}</Link></p>
-                    )
+                    return(<Link class="dropdown-item" style={{backgroundColor : 'white'}} to = {`/stocks/${a._id}`} onClick = {emptyResults}>{a.Name}</Link>)
                 })}
+                </div>          
             </div>
         </div>
     )

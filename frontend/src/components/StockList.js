@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 import { formatValue, formatParameter } from "../utilities/format"
+import { Table, Button } from "react-bootstrap"
 
 const StockList = (props) => {  
     const stocks =  useSelector(state => state.stocks)
@@ -27,15 +28,19 @@ const StockList = (props) => {
     }
     return(
         <div>
-            <table>
-                <tr>
-                    <th>Company</th>
-                    <th>{formatParameter(parameter)}</th>
-                    <th>Sector</th>
-                </tr>
-                {orderedStocks.slice(firstStock,lastStock).map(stock => <StockRow stock = {stock} parameter = {parameter}/>)}
-            </table>
-            <button onClick = {nextPage}>show stocks {lastStock !== 100 ? lastStock : 0} - { !(lastStock + Number(parameters[2]) > 100) ? lastStock + Number(parameters[2]) : Number(parameters[2])}</button>
+            <Table striped bordered hover size="sm">
+                <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>{formatParameter(parameter)}</th>
+                        <th>Sector</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {orderedStocks.slice(firstStock,lastStock).map(stock => <StockRow key={stock._id} stock = {stock} parameter = {parameter}/>)}
+                </tbody>
+            </Table>
+            <Button size="lg" variant='primary' onClick = {nextPage}>show stocks {lastStock !== 100 ? lastStock : 0} - { !(lastStock + Number(parameters[2]) > 100) ? lastStock + Number(parameters[2]) : Number(parameters[2])}</Button>
         </div>
     )
 }
@@ -44,7 +49,7 @@ const StockRow = props => {
     const stock = props.stock
     const value = formatValue(stock, props.parameter);
     return (
-        <tr>
+        <tr key={stock._id}>
             <td><Link to = {`stocks/${stock._id}`} >{stock.Name}</Link></td>
             <td>{value}</td>
             <td>{stock.Sector}</td>

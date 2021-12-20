@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { addMessage } from "../reducers/stockReducer"
+import { Button, Form } from "react-bootstrap"
 
 const MessageForm = (props) => {
     const [visible, setVisible] = useState(false)
@@ -16,7 +17,6 @@ const MessageForm = (props) => {
             content: comment,
             date: (new Date()).toISOString()
         }
-        console.log(Message);
         dispatch(addMessage(Message, user));
         setComment("")
         setVisible(false);
@@ -25,17 +25,21 @@ const MessageForm = (props) => {
     if(!user) return (<></>)
     //Button that opens form
     if(!visible) return (
-        <button onClick = {() => setVisible(true)}>comment</button>
+        <div style={{paddingBottom:'20px'}}>
+        <Button variation='primary' size="lg" onClick = {() => setVisible(true)}>comment</Button>
+        </div>
     )
     //form that allows user to leave comments avout the stock at hand
     return(
-        <form onSubmit={handleComment}>
-            Message<div>
-            <input type='text' value={comment} onChange={(event) =>{setComment(event.target.value)}}/>
-            <button type="submit">send</button>
-            <button onClick ={() => {setVisible(false); setComment("")}}>cancel</button>
-            </div>
-        </form>
+        <div style={{paddingBottom:'20px'}}>
+        <Form onSubmit={handleComment}>
+            <Form.Label><b>Message</b></Form.Label> <Form.Group className="mb-3"> 
+            <textarea type='text'  rows="4" cols="50" value={comment} onChange={(event) =>{setComment(event.target.value)}}/>
+            </Form.Group>
+            <Button variant='primary' type="submit">send</Button>
+            <Button variant='secondary' onClick ={() => {setVisible(false); setComment("")}}>cancel</Button>
+        </Form>
+        </div>
     )
 }
 

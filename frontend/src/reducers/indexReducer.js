@@ -7,7 +7,6 @@ const indexReducer = (state = null, action) => {
     }
 }
 export const addIndexHistory = (history) => {
-    console.log("history received")
     return {
         type: 'ADD_HISTORY',
         history: history 

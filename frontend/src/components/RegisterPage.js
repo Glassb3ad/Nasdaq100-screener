@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import userService from "../services/userService"
 import { addNotification, addError } from "../reducers/notificationReducer"
+import { Form, Button } from "react-bootstrap"
 const RegisterPage = (props) => {
     const [username, setUsername] = useState('')
     const [password1, setPassword1] = useState('')
@@ -10,19 +11,15 @@ const RegisterPage = (props) => {
     
     const handleSubmit = async (event) => {
         event.preventDefault()
-        console.log(username +" "+ password1 + " " + password2);
         if(password1 === password2){
-            console.log('hello1')
             try{
-                const response = await userService.newAccount({username: username, password: password1})
-                console.log(response)
+                await userService.newAccount({username: username, password: password1})
                 dispatch(addNotification(`New account ${username} created. Use username and password to login`))
                 setUsername("")
                 setPassword1("")
                 setPassword2("")
             }
             catch(error){
-                console.log(error.data)
                 dispatch(addError("Username is already taken"))
             }
             setUsername("")
@@ -37,20 +34,17 @@ const RegisterPage = (props) => {
     }
 
     return(
-       <div> 
+       <div style={{paddingLeft:'80px'}}> 
             <h1>Register a new account</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    Username: <input type='text' value={username} onChange={(event)=>{setUsername(event.target.value)}}/>
-                </div>
-                <div>
-                    Password: <input type='password' value={password1} onChange={(event)=>{setPassword1(event.target.value)}}/>
-                </div>
-                <div>
-                    Password: <input type='password' value={password2} onChange={(event)=>{setPassword2(event.target.value)}}/>
-                </div>
-                <button type="submit">register</button>
-            </form>
+            <Form onSubmit={handleSubmit}>
+                <Form.Label><b>Username</b></Form.Label>
+                <div> <input type='text' value={username} onChange={(event)=>{setUsername(event.target.value)}}/></div>
+                <Form.Label><b>password</b></Form.Label>
+                <div> <input type='password' value={password1} onChange={(event)=>{setPassword1(event.target.value)}}/></div>
+                <Form.Label><b>Password</b></Form.Label>
+                <div><input type='password' value={password2} onChange={(event)=>{setPassword2(event.target.value)}}/></div>
+                <Button variant='primary' type="submit">register</Button>
+            </Form>
         </div>
     )
 }

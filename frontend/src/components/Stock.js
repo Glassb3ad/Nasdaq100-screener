@@ -7,6 +7,7 @@ import Info from './Info'
 import Logo from './Logo'
 import Price from './Price'
 import StockChart from './StockChart'
+import { Table } from 'react-bootstrap'
 const Stock = () => {
     let parameterId = useParams().id
     const stocks = useSelector(state => state.stocks)
@@ -45,11 +46,15 @@ const Stock = () => {
     }  
     
     return(
-        <div>
-            <h1>{stock.Name} <FollowStock stock={stock}/></h1>
+        <div style = {{paddingTop: '30px', paddingLeft: '80px', paddingRight : '50px', backgroundColor: '#fafeff', boxShadow: "5px 10px #888888"}}>
             <Logo stock={stock}/>
-            <div><b>Current price: </b><Price stock={stock}/></div>
+            <h1 style={{border: '4px solid', paddingBottom : "10px"}}>{stock.Name} </h1>
+            <div style={{ paddingTop: '5px'}}><FollowStock stock={stock}/></div>
             <StockChart stock = {stock}/>
+            <div style={{ paddingTop: '20px', paddingBottom:"20px"}}>
+                <h4>Last price:</h4>
+                <Price stock={stock}/>
+            </div>            
             <h2>Description</h2>
             <p>{stock.Description}</p>
             <h2>Financial information</h2>
@@ -66,13 +71,10 @@ const Stock = () => {
 
 //This component renders all financial information in a table.
 const FinancialInformation = ({data}) => {
-    console.log("Data: ")
-    console.log(data)
-    console.log("Data as array: ");
-    console.log(Object.entries(data))
     let key = 1;
     return (
-        <table>
+        <Table striped size='sm'>
+            <tbody>
             {Object.entries(data).map(a =>{
                 key++;
                 return(
@@ -82,7 +84,8 @@ const FinancialInformation = ({data}) => {
                     </tr>
                 )
             })}
-        </table>
+            </tbody>
+        </Table>
     )
 }
 
@@ -99,8 +102,8 @@ const Messages = ({stock}) => {
         <div>
         {stock.Messages.map((a) => {
             return(
-                <div key={a.id}>
-                    <p> user {a.senderName}. {formatDate(a.date)} </p>
+                <div key={a.id} style={{ backgroundColor:'#f0e5dd' }}>
+                    <p style={{ backgroundColor:'#dbcabd' }}> user <b>{a.senderName}</b> {formatDate(a.date)} </p>
                     <p>{a.content}</p>
                 </div>
             )

@@ -1,25 +1,25 @@
 import { useSelector, useDispatch } from "react-redux"
 import { resetNotification } from "../reducers/notificationReducer"
+import { Alert } from "react-bootstrap"
 const Notification = (props) => {
     const dispatch = useDispatch()
     const notification = useSelector(state => state.notification)
-    console.log(notification)
     if(notification.type === null) return (<></>)
     setTimeout(() => {
         dispatch(resetNotification())
     }, 5000)
     if(notification.type === 'NOTIFICATION'){
         return(
-            <div style={{background: 'green'}}>
+            <Alert variant='success'>
                 {notification.content}
-            </div>
+            </Alert>
         )
     }
     if(notification.type === 'ERROR'){
         return(
-            <div style={{background: 'red'}}>
+            <Alert variant='danger'>
                 Error: {notification.content}
-            </div>
+            </Alert>
         )
     }
 }

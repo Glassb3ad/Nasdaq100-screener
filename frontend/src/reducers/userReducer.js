@@ -19,7 +19,6 @@ const userReducer = (state = null, action) => {
     }
 } 
 export const addUser = (a) => {
-    console.log(a)
     return async (dispatch) => { 
         const user = await userService.findById(a.id)
         dispatch(
