@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3001/api/stocks'
+const baseUrl = '/api/stocks'
 
 const getAll = async () => {
     const response = await axios.get(baseUrl)
@@ -11,7 +11,7 @@ const getById = (id) => {
 }
 const getPrice = async (symbol) => {
     try{
-        const response = await axios.get(`http://localhost:3001/api/prices/${symbol}`)
+        const response = await axios.get(`/api/prices/${symbol}`)
         return response.data
     }
     catch(error){return error}

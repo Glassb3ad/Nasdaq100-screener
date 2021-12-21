@@ -22,7 +22,7 @@ const App = () => {
   if(useSelector(state => state.stocks) == null) return (<></>)
   return(
       <Router>
-      <Navbar class="navbar sticky-top navbar-dark" style ={{backgroundColor :'#2a282b'}} >
+      <Navbar sticky='top' variant='dark'  style ={{backgroundColor :'#2a282b'}} >
           <div class="d-flex flex-row bd-highlight mb-3">    
               <Nav.Link href="#" as="span">
               <Link class="navbar-brand" to='/'>Stocks  </Link>    
@@ -37,7 +37,9 @@ const App = () => {
               <Login class="navbar-brand"/>
               </Nav.Link>
           </div>
+          <div style={{marginLeft: 'auto'}}>
               <DirectSearch class="navbar-brand"/>
+          </div>
       </Navbar>
       <Notification/> 
       <Switch>

@@ -1,5 +1,5 @@
 import axios from 'axios'
-const basicUrl = 'http://localhost:3001/api/index'
+const basicUrl = '/api/index'
 
 const getIndex = async () => {
     try{

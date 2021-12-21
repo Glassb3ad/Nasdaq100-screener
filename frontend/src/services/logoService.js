@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3001/api/logos'
+const baseUrl = '/api/logos'
 
 const getLogo =  async (stockName) => {
     try{

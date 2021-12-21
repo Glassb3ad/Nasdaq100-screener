@@ -1,6 +1,6 @@
 import axios from 'axios'
-const loginUrl = 'http://localhost:3001/api/login'
-const userUrl = 'http://localhost:3001/api/users'
+const loginUrl = '/api/login'
+const userUrl = '/api/users'
 
 let token = null
 const setToken = newToken => {
