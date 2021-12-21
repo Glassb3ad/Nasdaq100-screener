@@ -1,7 +1,8 @@
 # Fullstack-project
 
 Sovelluksen osoite: https://nasdaq100screener.herokuapp.com/
-tuntikirjanpito: 
+
+tuntikirjanpito: https://github.com/Glassb3ad/Fullstack-project/blob/master/Tuntikirjanpito.txt
 
 Sovelluksen tarkoituksena on mahdollistaa Nasdaq 100 osakeindeksin "screenaaminen" eli suodattaminen tyypillisten tunnuslukujen, kuten p/e:n, perusteella.
 Käyttäjä voi siis etsiä esimerkiksi osakkeet, joiden liikevaihto suhteessa osakkeen hintaan on mahdollisimman pieni. 
