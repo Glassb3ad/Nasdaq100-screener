@@ -12,7 +12,6 @@ priceRouter.get("/:symbol",  async (request, response) => {
 
     }
     catch(error){
-        console.log("nothing found")
         return response.status(404).json(error.message)
     }
 })

@@ -10,7 +10,6 @@ logoRouter.get("/:name",  async (request, response) => {
     let name = request.params.name
     if(name.endsWith(" Inc") ||name.endsWith(" Corporation")){
         name = name.slice(0,name.lastIndexOf(" "))
-        console.log(name)
     }
     if(name.endsWith(".com")){
         name = name.slice(0,name.lastIndexOf("."))
@@ -24,7 +23,6 @@ logoRouter.get("/:name",  async (request, response) => {
         return response.status(200).json(logo.data)
     }
     catch(error){
-        console.log("nothing found")
         return response.status(404).json(error.message)
     }
 })

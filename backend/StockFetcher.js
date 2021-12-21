@@ -9,10 +9,7 @@ const updateStocks = async () => {
     const interval = setInterval(async () => {
         try {
             const currentStock = currentStocks[set]
-            console.log(currentStock)
-            console.log(currentStock.Symbol)
             const newData = (await axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${currentStock.Symbol}&apikey=${process.env.AVKEY1}`)).data
-            console.log(newData)
             const newStock = Stocks({
                 Messages: currentStock.Messages,
                 Symbol: currentStock.Symbol,
@@ -62,7 +59,6 @@ const updateStocks = async () => {
                 SharesOutstanding: newData.SharesOutstanding,
                 DividendDate: newData.DividendDate,
             })
-            console.log(newStock)
             await Stocks.findByIdAndUpdate(currentStock._id, newStock, { new: true })
             set++
             if (set >= currentStocks.length) {
