@@ -37,7 +37,7 @@ const StockList = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {orderedStocks.slice(firstStock,lastStock).map(stock => <StockRow key={stock._id} stock = {stock} parameter = {parameter}/>)}
+                    {orderedStocks.slice(firstStock,lastStock).map((stock, index) => <StockRow key={stock._id} stock = {stock} parameter = {parameter} index={index} firstStock={firstStock}/>)}
                 </tbody>
             </Table>
             <Button size="lg" variant='primary' onClick = {nextPage}>show stocks {lastStock !== 100 ? lastStock : 0} - { !(lastStock + Number(parameters[2]) > 100) ? lastStock + Number(parameters[2]) : Number(parameters[2])}</Button>
@@ -50,7 +50,7 @@ const StockRow = props => {
     const value = formatValue(stock, props.parameter);
     return (
         <tr key={stock._id}>
-            <td><Link to = {`stocks/${stock._id}`} >{stock.Name}</Link></td>
+            <td>{props.firstStock + props.index}. <Link to = {`stocks/${stock._id}`} >{stock.Name}</Link></td>
             <td>{value}</td>
             <td>{stock.Sector}</td>
         </tr>
